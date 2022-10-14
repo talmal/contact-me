@@ -1,0 +1,86 @@
+version: "3.7"
+# i am using .env file for environment variables like ${profile}
+networks:
+  default:
+    name: contact-network
+#    external: true
+
+services:
+  logger:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    restart: always
+    ports:
+      - 9411:9411 
+    
+  config:
+    image: talmal/contact-config:0.0.1
+    container_name: config
+    ports:
+      - 8888:8888
+    restart: always 
+      
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=${rabbitmq_user}
+      - RABBITMQ_DEFAULT_PASS=${rabbitmq_pass}
+    hostname: rabbitmqHost
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+      
+  discovery:
+    image: talmal/contact-discovery:0.0.1
+    container_name: discovery
+    environment:
+      - spring.profiles.active=${profile}
+    ports:
+      - 8761:8761
+    depends_on:
+      - config
+    restart: always
+      
+  angularFrontend:
+    image: talmal/angular_frontend:0.0.1
+    container_name: angularFrontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    environment:
+      - spring.cloud.config.enabled=false
+      - spring.profiles.active=${profile}     
+    restart: always
+
+  messageSender:
+    image: talmal/contact-message-sender:0.0.1
+    container_name: messageSender
+    environment:
+      - spring.profiles.active=${profile}     
+    ports:
+      - 8081:8081
+    depends_on:
+      - config
+      - discovery
+    restart: always      
+            
+  contactForm:
+    image: talmal/contact-contact-form:0.0.1 
+    container_name: contactForm
+    environment:
+      - spring.profiles.active=${profile}      
+    ports:
+      - 8082:8082
+    depends_on:
+      - config
+      - discovery
+      - messageSender
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"   
