@@ -12,6 +12,7 @@ To run Contact-me application, you need to have:
 [put-your-docker-machine-ip-here] host.docker.internal  
 [put-your-docker-machine-ip-here] gateway.docker.internal  
 2.2 - to find your hosts file look at https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/  
+2.3 - to find your docker machine ip look at https://devilbox.readthedocs.io/en/latest/howto/docker-toolbox/find-docker-toolbox-ip-address.html  
 3 - download docker-compose.yaml and .env files from this repository, to your computer.  
 4 - open a command prompt (cmd) at docker-compose.yaml location.  
 5 - run the command "docker-compose up -d".  
