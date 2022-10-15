@@ -8,7 +8,7 @@ All set on docker containers and ready to run.
 To run Contact-me application, you need to have:  
 1 - windows10 or newer.  
 2 - docker-desktop installed and running - https://docs.docker.com/desktop/install/windows-install/  
-2.1 - when not using docker-desktop, make sure your hosts file contains below lines to enable communication with backend:  
+2.1 - when NOT using docker-desktop, make sure your hosts file contains below lines to enable communication with backend:  
 [put-your-docker-machine-ip-here] host.docker.internal  
 [put-your-docker-machine-ip-here] gateway.docker.internal  
 2.2 - to find your hosts file look at https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/  
