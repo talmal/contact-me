@@ -15,7 +15,8 @@ To run Contact-me application, you need to have:
 2.3 - to find your docker machine ip look at https://devilbox.readthedocs.io/en/latest/howto/docker-toolbox/find-docker-toolbox-ip-address.html  
 3 - download docker-compose.yaml and .env files from this repository, to your computer.  
 4 - open a command prompt (cmd) at docker-compose.yaml location.  
-5 - run the command "docker-compose up -d".  
+5 - start the servers by running the command "docker-compose up -d".  
 6 - open a browser to http://host.docker.internal:4200/, wait for web site to be available (about 5 minutes).  
 7 - fill and send the contact form.  
 8 - chat with me.  
+9 - stop the servers by running the commond "docker-compose down".  
