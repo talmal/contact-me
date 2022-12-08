@@ -19,5 +19,3 @@ To run Contact-me application, you need to have:
 6 - open a browser to http://host.docker.internal:4200/, wait for web site to be available (about 5 minutes).  
 7 - fill and send the contact form.  
 8 - chat with me.  
-
-this repository also contains config files for Contact-me application's spring cloud config server.  
